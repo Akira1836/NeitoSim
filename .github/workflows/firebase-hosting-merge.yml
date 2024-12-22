@@ -25,4 +25,4 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEITOSIM_2AFA0 }}
           channelId: live
-          projectId: neitosim
+          projectId: neitosim-2afa0
