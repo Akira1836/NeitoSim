@@ -6,14 +6,23 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2 # https://github.com/subosito/flutter-action
+        with:
+          channel: 'stable'
+          flutter-version: 3.27.0
+      - name: Get Flutter dependencies
+        run: flutter pub get
+      - run: flutter build web
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEITOSIM_2AFA0 }}
           channelId: live
-          projectId: neitosim-2afa0
+          projectId: neitosim
